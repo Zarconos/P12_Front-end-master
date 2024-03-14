@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+// EmployeeListPage.js
+
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 function EmployeeListPage() {
-    const [employees, setEmployees] = useState([]);
-
-    useEffect(() => {
-        // Charger les employés depuis localStorage ou votre API
-        const employeesData = JSON.parse(localStorage.getItem('employees')) || [];
-        setEmployees(employeesData);
-    }, []);
+    const employees = useSelector(state => state.storeData.employees);
 
     const columns = [
         { Header: 'First Name', accessor: 'firstName' },

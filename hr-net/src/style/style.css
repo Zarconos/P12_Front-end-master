@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to top, #D7EBDF, #fff); /* Dégradé du vert clair au blanc, du bas vers le haut */
+    color: #333; /* couleur de texte */
+    height: 746px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #4a7c59; /* vert foncé */
+}
+
+a {
+    color: #4a7c59; /* vert foncé */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #3b5d45; /* vert plus clair au survol */
+}
+
+input[type="text"],
+select,
+button {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #4a7c59; /* vert foncé */
+    border-radius: 5px;
+    background-color: #ecf4f0; /* vert clair */
+    color: #333; /* couleur de texte */
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+select:focus,
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 124, 89, 0.5); /* vert foncé avec transparence */
+}
+
+select {
+
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#4a7c59" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* flèche personnalisée */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+button {
+    cursor: pointer;
+    background-color: #4a7c59; /* vert foncé */
+    color: #fff; /* texte en blanc */
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3b5d45; /* vert plus clair au survol */
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+legend {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#create-employee{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
