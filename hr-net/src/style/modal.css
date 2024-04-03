@@ -31,3 +31,12 @@
     color: white;
   }
   
+  #zip-code{
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #4a7c59;
+    border-radius: 5px;
+    background-color: #ecf4f0;
+    color: #333;
+    font-size: 16px;
+  }

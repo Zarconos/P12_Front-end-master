@@ -5,13 +5,17 @@ body {
     background: linear-gradient(to top, #D7EBDF, #fff); /* Dégradé du vert clair au blanc, du bas vers le haut */
     color: #333; /* couleur de texte */
     height: 746px;
+    padding-top: 95px;
+
+    padding-bottom: 95px;
+
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    margin-top: -54px;
 }
 
 h1, h2 {
@@ -68,6 +72,7 @@ button:hover {
 fieldset {
     border: none;
     padding: 0;
+    display: flex;
 }
 
 legend {
@@ -81,4 +86,14 @@ legend {
     align-items: center;
 }
 
+.address-fields{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 5%;
+}
 
+.logo {
+    width: auto;
+    height: auto;
+  }

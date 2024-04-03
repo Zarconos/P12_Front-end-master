@@ -7,9 +7,11 @@ import moment from 'moment';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import states from '../data/data';
-import Modal from '../components/modal';
+import Modal from 'react-modal-zarconoshrnet';
 import '../style/style.css';
-import logo from "../assets/Logo.png";
+import '../style/modal.css';
+import logo from "../assets/Logo.webp";
+
 
 function EmployeeFormPage() {
     const dispatch = useDispatch(); // Obtenez la fonction dispatch pour pouvoir envoyer des actions Redux
@@ -27,6 +29,11 @@ function EmployeeFormPage() {
 
     function saveEmployee(event) {
         event.preventDefault();
+
+        if (!firstName || !lastName || !dateOfBirth || !startDate || !department || !street || !city || !state || !zipCode) {
+            alert("Please fill in all fields");
+            return; // Arrêtez l'exécution de la fonction si un champ est vide
+        }
 
         const formattedDateOfBirth = moment(dateOfBirth).format("YYYY-MM-DD");
 
@@ -49,21 +56,23 @@ function EmployeeFormPage() {
     function closeModal() {
         setIsModalOpen(false);
     }
+    const modalContent = <div id="confirmation" className="modal-text">Employee Created!</div>;
 
     return (
         <div className="container">
-            <img src={logo} alt="sportSee" className="logo" aria-label="logo sportSee" />
+            <img src={logo} alt="hrnet" className="logo" aria-label="logo hrnet" />
             <h1>HRnet</h1>
-            <a href="/employee-list">Voir les employés actuels</a>
-            <h2>Créer un employé</h2>
-            <form onSubmit={saveEmployee} id="create-employee">
-                <label htmlFor="first-name">Prénom</label>
+            <a href="/employee-list">View Current Employees</a>
+            <h2>Create Employee</h2>
+            <form onSubmit={saveEmployee} id="create-employee" data-testid="create-employee">
+                <label htmlFor="first-name">First Name</label>
                 <input type="text" id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 
-                <label htmlFor="last-name">Nom</label>
+                <label htmlFor="last-name">Last Name</label>
                 <input type="text" id="last-name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
-                <label htmlFor="date-of-birth">Date de naissance</label>
+                <label htmlFor="date-of-birth">Date of Birth</label>
+                <div data-testid="date-of-birth">
                 <Datetime
                     id="date-of-birth"
                     value={dateOfBirth}
@@ -71,29 +80,44 @@ function EmployeeFormPage() {
                     dateFormat="YYYY-MM-DD"
                     timeFormat={false}
                 />
-
+                </div>
                 <label htmlFor="start-date">Start Date</label>
-                <input id="start-date" type="text" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                <Datetime
+                    id="start-date"
+                    value={startDate}
+                    onChange={value => setStartDate(value)}
+                    dateFormat="YYYY-MM-DD"
+                    timeFormat={false}
+                />
 
                 <fieldset className="address">
                     <legend>Address</legend>
 
-                    <label htmlFor="street">Street</label>
-                    <input id="street" type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
+                    <div className="address-fields">
+                        <label htmlFor="street">Street</label>
+                        <input id="street" type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
+                    </div>
 
-                    <label htmlFor="city">City</label>
-                    <input id="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+                    <div className="address-fields">
+                        <label htmlFor="city">City</label>
+                        <input id="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+                    </div>
 
-                    <label htmlFor="state">State</label>
-                    <select name="state" id="state" value={state} onChange={(e) => setState(e.target.value)}>
-                        <option value="">Select State</option>
-                        {states.map((state, index) => (
-                            <option key={index} value={state.abbreviation}>{state.name}</option>
-                        ))}
-                    </select>
+                    <div className="address-fields">
+                        <label htmlFor="state">State</label>
+                        <select name="state" id="state" value={state} onChange={(e) => setState(e.target.value)}>
+                            <option value="">Select State</option>
+                            {states.map((state, index) => (
+                                <option key={index} value={state.abbreviation}>{state.name}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                    <label htmlFor="zip-code">Zip Code</label>
-                    <input id="zip-code" type="number" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+                    <div className="address-fields">
+                        <label htmlFor="zip-code">Zip Code</label>
+                        <input id="zip-code" type="number" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
+                    </div>
+
                 </fieldset>
 
                 <label htmlFor="department">Department</label>
@@ -107,9 +131,9 @@ function EmployeeFormPage() {
 
                 <button type="submit">Save</button>
             </form>
-            {/* Utilisez le composant Modal et le state pour contrôler son ouverture */}
-            {isModalOpen && <Modal onClose={closeModal} options={{ closeText: 'Close' }} />}
-            {/* Affichez le message de confirmation dans le modal */}
+            <div data-testid="modal">
+            {isModalOpen && <Modal onClose={closeModal} content={modalContent} options={{ closeText: 'x', modalText: 'Custom Text Here' }} />}
+            </div>
            
         </div>
     );

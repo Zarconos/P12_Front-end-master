@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import Table from '../components/Table';
+import '../style/Table.css';
 
 function EmployeeListPage() {
-    const employees = useSelector(state => state.storeData.employees);
+    const employees = useSelector(state => state.storeData && state.storeData.employees);
 
     const columns = [
         { Header: 'First Name', accessor: 'firstName' },
@@ -24,7 +23,7 @@ function EmployeeListPage() {
     return (
         <div className="container">
             <h1>Current Employees</h1>
-            <ReactTable
+            <Table
                 columns={columns}
                 data={employees}
                 defaultPageSize={10}
