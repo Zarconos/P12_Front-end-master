@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# HR Net
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HR Net is a human resources management application developed using React and Redux.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+- Clone this repository to your local machine.
 
-### `npm start`
+- Make sure you have Node.js installed on your system.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Run npm install to install all dependencies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+```
 
-### `npm test`
+## Utilisation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- To start the application in development mode, run npm start.
 
-### `npm run build`
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- To build the application for production, run npm run build.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- To run tests, run npm test.
 
-### `npm run eject`
+```bash
+npm test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- To eject Create React App scripts, run npm run eject.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm eject
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## App Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The structure of the HR Net application is organized as follows:
 
-## Learn More
+- **App.js**: Main app component responsible for routing and overall application setup.
+- **pages/**: Contains page components for each route in the application.
+  - **employee-list.js**: Page component responsible for displaying the list of employees.
+  - **home.js**: Page component responsible for displaying the form to add/edit employees.
+- **components/**: Contains reusable component used throughout the application.
+  - **Table.js**: Reusable component responsible for displaying a list of employees.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Redux Integration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Redux is integrated into the application for managing application state. Here's a brief overview of the Redux setup:
 
-### Code Splitting
+- **redux/**: Contains Redux-related files.
+  - **reducers.js**: Defines Redux reducers to update application state based on actions.
+  - **store.js**: Creates the Redux store and combines reducers.
+- **App.js**: Wraps the entire application with the Redux `<Provider>` to provide the store to all components.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This structured organization helps maintain clarity and separation of concerns within the project.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Example Usage
 
-### Making a Progressive Web App
+![Alt text](https://image.noelshack.com/fichiers/2024/15/4/1712792721-hr-net.png "Screenshot")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- React: JavaScript library for building user interfaces.
+- Redux Toolkit: Official Redux tool for managing application state.
+- @reduxjs/toolkit: Official Redux tool for managing application state.
+- @testing-library/user-event: Library for simulating user events for testing.
+- @types/react: TypeScript types for React.
+- @types/react-dom: TypeScript types for ReactDOM.
+- enzyme: Testing utility for React.
+- react-data-table-component: DataTable component for React.
+- react-datetime: Date and time picker component for React.
+- react-redux: Binding React to Redux.
+- react-router-dom: Routing for React applications.
+- react-scripts: Development scripts for React applications.
+- redux: Library for managing application state.
+- redux-mock-store: Redux mock store for testing.
+- redux-thunk: Redux middleware for handling asynchronous actions.
+- web-vitals: Tools for measuring and observing web performance.
 
-### Deployment
+## Licence
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the LICENSE file for details. MIT © Zarconos

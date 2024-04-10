@@ -12,8 +12,8 @@ const storeSlice = createSlice({
     reducers: {
         addEmployee: (state, action) => {
             state.employees.push(action.payload);
-            console.log("New employee added:", action.payload); // Ajouter ce console.log pour vérifier les données ajoutées
-            console.log("Updated state:", state); // Ajouter ce console.log pour vérifier l'état mis à jour
+            console.log("New employee added:", action.payload);
+            console.log("Updated state:", state);
         }
     }
 });

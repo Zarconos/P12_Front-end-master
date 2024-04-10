@@ -4,7 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to top, #D7EBDF, #fff); /* Dégradé du vert clair au blanc, du bas vers le haut */
     color: #333; /* couleur de texte */
-    height: 746px;
+    height: 860px;
     padding-top: 95px;
 
     padding-bottom: 95px;
@@ -97,3 +97,10 @@ legend {
     width: auto;
     height: auto;
   }
+
+  @media screen and (max-width: 1190px) {
+    fieldset {
+        display: block;
+    }
+}
+

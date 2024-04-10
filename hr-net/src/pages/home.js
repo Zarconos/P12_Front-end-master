@@ -89,7 +89,7 @@ function EmployeeFormPage() {
                     dateFormat="YYYY-MM-DD"
                     timeFormat={false}
                 />
-
+                <div className="form-fields">
                 <fieldset className="address">
                     <legend>Address</legend>
 
@@ -119,7 +119,7 @@ function EmployeeFormPage() {
                     </div>
 
                 </fieldset>
-
+                </div>                    
                 <label htmlFor="department">Department</label>
                 <select name="department" id="department" value={department} onChange={(e) => setDepartment(e.target.value)}>
                     <option>Sales</option>

@@ -35,7 +35,7 @@ const store = configureStore({
   preloadedState: persistedState // Charger l'état initial depuis sessionStorage
 });
 
-// Abonnez-vous à des modifications d'état pour les enregistrer dans sessionStorage
+
 store.subscribe(() => {
   saveState(store.getState());
 });

@@ -1,48 +1,72 @@
+
+// All necessary imports here
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Table from '../components/Table';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Table from '../components/Table'; // Assuming the Table component is in a file named Table.js in the same directory
 
-describe('Table', () => {
-  it('renders table headers correctly', () => {
-    const columns = [
-      { Header: 'First Name' },
-      { Header: 'Last Name' },
-      { Header: 'Start Date' },
-      { Header: 'Department' },
-      { Header: 'Date of Birth' },
-      { Header: 'Street' },
-      { Header: 'City' },
-      { Header: 'State' },
-      { Header: 'Zip Code' }
-    ];
-    const data = []; // Utilisez des données vides car nous ne testons que l'en-tête ici
+// Example data to be used for tests
+const data = [
+    { firstName: 'John', lastName: 'Doe', startDate: '01/01/2020', department: 'HR', dateOfBirth: '1990-01-01', street: '123 Elm St', city: 'Anytown', state: 'CA', zipCode: '12345' },
+    { firstName: 'Jane', lastName: 'Doe', startDate: '02/01/2020', department: 'IT', dateOfBirth: '1991-02-01', street: '456 Oak St', city: 'Anycity', state: 'TX', zipCode: '67890' },
+    { firstName: 'Jim', lastName: 'Beam', startDate: '03/01/2020', department: 'Finance', dateOfBirth: '1992-03-01', street: '789 Pine St', city: 'Thiscity', state: 'FL', zipCode: '10112' }
+];
 
-    render(<Table data={data} columns={columns} />);
+describe('Table component', () => {
+    test('renders without crashing', () => {
+        render(<Table data={data} />);
+        expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
+    });
 
-    expect(screen.getByText('First Name')).toBeInTheDocument();
-    expect(screen.getByText('Last Name')).toBeInTheDocument();
-    // Ajoutez des assertions pour les autres en-têtes de colonne
+  test('renders the correct initial number of entries', () => {
+    render(<Table data={data} />);
+    const rows = screen.getAllByRole('row');
+    expect(rows).toHaveLength(4); // as data length is 3 and one for header
   });
 
-  it('renders employee data correctly', () => {
-    const columns = [
-      { Header: 'First Name', accessor: 'firstName' },
-      { Header: 'Last Name', accessor: 'lastName' },
-      { Header: 'Start Date', accessor: 'startDate' },
-      { Header: 'Department', accessor: 'department' },
-      { Header: 'Date of Birth', accessor: 'dateOfBirth' },
-      { Header: 'Street', accessor: 'street' },
-      { Header: 'City', accessor: 'city' },
-      { Header: 'State', accessor: 'state' },
-      { Header: 'Zip Code', accessor: 'zipCode' }
-    ];
-    const data = [
-      { firstName: 'John', lastName: 'Doe', startDate: '2020-01-01', department: 'HR', dateOfBirth: '1990-01-01', street: '123 Street', city: 'City', state: 'State', zipCode: '12345' }
-    ];
-
-    render(<Table data={data} columns={columns} />);
-
-    expect(screen.getByText('John')).toBeInTheDocument();
-    expect(screen.getByText('Doe')).toBeInTheDocument();
+  test('changes entries per page', () => {
+    render(<Table data={data} />);
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 10 } });
+    const options = screen.getAllByRole('option');
+    expect(options[1].selected).toBeTruthy();
   });
-});
+
+  test('filters data based on search term', () => {
+    render(<Table data={data} />);
+    fireEvent.change(screen.getByPlaceholderText(/search/i), { target: { value: 'Jane' } });
+    expect(screen.getByText('Jane')).toBeInTheDocument();
+    expect(screen.queryByText('John')).not.toBeInTheDocument();
+  });
+
+  test('navigates to the next page', () => {
+    render(<Table data={Array(10).fill(data[0])} />); // Render component with 10 identical entries to test pagination
+    fireEvent.click(screen.getByText(/next/i));
+    expect(screen.getByText(/page 2/i)).toBeInTheDocument();
+  });
+
+  test('navigates to the previous page after navigating to next page', () => {
+    render(<Table data={Array(10).fill(data[0])} />);
+    fireEvent.click(screen.getByText(/next/i));
+    fireEvent.click(screen.getByText(/previous/i));
+    expect(screen.getByText(/page 1/i)).toBeInTheDocument();
+  });
+
+  test('disables the Previous button on the first page', () => {
+    render(<Table data={data} />);
+    expect(screen.getByText(/previous/i)).toBeDisabled();
+  });
+
+  test('disables the Next button on the last page', () => {
+    render(<Table data={Array(5).fill(data[0])} />);
+    expect(screen.getByText(/next/i)).toBeDisabled();
+  });
+
+  test('ensures search resets current page to 1', () => {
+    render(<Table data={Array(10).fill(data[0])} />);
+    fireEvent.change(screen.getByPlaceholderText(/search/i), { target: { value: 'John' } });
+    expect(screen.getByText(/page 1/i)).toBeInTheDocument();
+  });
+
+  // Additional tests can be designed for edge cases, such as invalid data handling, extreme cases for search and pagination, etc.
+
+})
