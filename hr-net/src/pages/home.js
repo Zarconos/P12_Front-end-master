@@ -9,7 +9,7 @@ import 'react-datetime/css/react-datetime.css';
 import states from '../data/data';
 import Modal from 'react-modal-zarconoshrnet';
 import '../style/style.css';
-import '../style/modal.css';
+import 'react-modal-zarconoshrnet/dist/index.css';
 import logo from "../assets/Logo.webp";
 
 
@@ -26,6 +26,7 @@ function EmployeeFormPage() {
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
 
     function saveEmployee(event) {
         event.preventDefault();
@@ -34,20 +35,20 @@ function EmployeeFormPage() {
             alert("Please fill in all fields");
             return; // Arrêtez l'exécution de la fonction si un champ est vide
         }
-
         const formattedDateOfBirth = moment(dateOfBirth).format("YYYY-MM-DD");
-
+        const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
+        
         const employee = {
             firstName,
             lastName,
             dateOfBirth: formattedDateOfBirth,
-            startDate,
+            startDate: formattedStartDate,
             department,
             street,
             city,
             state,
             zipCode
-        };
+        };        
 
         dispatch(addEmployee(employee)); // Envoyez l'action d'ajout d'employé au store Redux
         setIsModalOpen(true);
@@ -120,15 +121,19 @@ function EmployeeFormPage() {
 
                 </fieldset>
                 </div>                    
+                <div>
                 <label htmlFor="department">Department</label>
-                <select name="department" id="department" value={department} onChange={(e) => setDepartment(e.target.value)}>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
-
+                <div onClick={() => setIsDropdownOpen(!isDropdownOpen)} onBlur={() => setIsDropdownOpen(false)}>
+                    <select name="department" id="department" value={department} onChange={(e) => setDepartment(e.target.value)}>
+                        <option value="" disabled={isDropdownOpen} style={{ visibility: isDropdownOpen ? 'hidden' : 'visible' }}></option>
+                        <option>Sales</option>
+                        <option>Marketing</option>
+                        <option>Engineering</option>
+                        <option>Human Resources</option>
+                        <option>Legal</option>
+                    </select>
+                </div>
+                </div>
                 <button type="submit">Save</button>
             </form>
             <div data-testid="modal">

@@ -10,6 +10,11 @@ HR Net is a human resources management application developed using React and Red
 
 - Run npm install to install all dependencies.
 
+
+```bash
+cd hr-net
+```
+
 ```bash
 npm install
 ```
@@ -77,7 +82,6 @@ This structured organization helps maintain clarity and separation of concerns w
 - @types/react: TypeScript types for React.
 - @types/react-dom: TypeScript types for ReactDOM.
 - enzyme: Testing utility for React.
-- react-data-table-component: DataTable component for React.
 - react-datetime: Date and time picker component for React.
 - react-redux: Binding React to Redux.
 - react-router-dom: Routing for React applications.
@@ -86,6 +90,7 @@ This structured organization helps maintain clarity and separation of concerns w
 - redux-mock-store: Redux mock store for testing.
 - redux-thunk: Redux middleware for handling asynchronous actions.
 - web-vitals: Tools for measuring and observing web performance.
+- react-modal-zarconoshrnet: A simple and customizable modal component for React applications.
 
 ## Licence
 

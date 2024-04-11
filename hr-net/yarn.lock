@@ -9094,10 +9094,10 @@ react-is@^18.0.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-modal-zarconoshrnet@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/react-modal-zarconoshrnet/-/react-modal-zarconoshrnet-1.0.5.tgz"
-  integrity sha512-qNAyWwzn5/F1LRPxnKmDaX5s+Vj0xWRxrsH5cDDvPhY6UE0wmiG2hY/uBCF+kbLhnNCTOOcSeK8B/4ifUR4ODQ==
+react-modal-zarconoshrnet@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/react-modal-zarconoshrnet/-/react-modal-zarconoshrnet-1.0.9.tgz"
+  integrity sha512-IlKdwdepyycfz/XRNZCGdgd3khv7OLMOYRA3foJC66yIaGvwz1mNvPdZOJD/Ln0tSpOFN6581sdZivn1/b2xzg==
   dependencies:
     "@tanstack/react-table" "^8.15.3"
 
